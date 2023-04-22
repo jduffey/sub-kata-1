@@ -9,11 +9,13 @@ try {
 
 const instructions = contents.split("\n");
 
-console.log(instructions);
-
 const structuredInstructions =
     instructions.map(e => {
-        return e.split(" ");
+        const split = e.split(" ");
+        return {
+            direction: split[0],
+            displacement: split[1],
+        };
     });
 
 console.log(structuredInstructions);

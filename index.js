@@ -26,13 +26,26 @@ console.log(new Set(possibleDirections));
 let horiztonalPos = 0;
 let verticalPos = 0;
 
+const moveForward = (disp) => {
+    horiztonalPos += disp;
+}
+
+const moveDown = (disp) => {
+    verticalPos -= disp;
+}
+
+const moveUp = (disp) => {
+    // TODO: the submarine cannot just always move up; we need to prevent it from "rising above sea level"
+    verticalPos += disp;
+}
+
 structuredInstructions.forEach(instrx => {
     if (instrx.direction === "forward") {
-        horiztonalPos += instrx.displacement;
+        moveForward(instrx.displacement);
     } else if (instrx.direction === "down") {
-        verticalPos -= instrx.displacement;
+        moveDown(instrx.displacement);
     } else if (instrx.direction === "up") {
-        verticalPos += instrx.displacement;
+        moveUp(instrx.displacement);
     } else {
         throw new Error("Invalid direction; instructions were:", instrx);
     }

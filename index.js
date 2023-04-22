@@ -10,3 +10,10 @@ try {
 const instructions = contents.split("\n");
 
 console.log(instructions);
+
+const structuredInstructions =
+    instructions.map(e => {
+        return e.split(" ");
+    });
+
+console.log(structuredInstructions);

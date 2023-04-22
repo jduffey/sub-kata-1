@@ -19,3 +19,15 @@ const structuredInstructions =
     });
 
 console.log(structuredInstructions);
+
+// Pausing to make a WIP commit here -- at this point I realized that there is not a "back" direction
+// and wanted to verify that :-)
+const possibleDirections = structuredInstructions.map(e => e.direction);
+console.log(new Set(possibleDirections));
+
+let horiztonalPos = 0;
+let verticalPos = 0;
+
+// structuredInstructions.forEach(e => {
+//     if (e.direction === )
+// })

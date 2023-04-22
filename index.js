@@ -36,10 +36,14 @@ const moveDown = (disp) => {
 
 const moveUp = (disp) => {
     // TODO: the submarine cannot just always move up; we need to prevent it from "rising above sea level"
+    // verticalPos = Math.min(0, verticalPos + disp);
     verticalPos += disp;
 }
 
 structuredInstructions.forEach(instrx => {
+    if (verticalPos > 0) {
+        throw new Error("Vertical position error");
+    }
     if (instrx.direction === "forward") {
         moveForward(instrx.displacement);
     } else if (instrx.direction === "down") {

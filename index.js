@@ -14,20 +14,30 @@ const structuredInstructions =
         const split = e.split(" ");
         return {
             direction: split[0],
-            displacement: split[1],
+            displacement: parseInt(split[1], 10),
         };
     });
 
 console.log(structuredInstructions);
 
-// Pausing to make a WIP commit here -- at this point I realized that there is not a "back" direction
-// and wanted to verify that :-)
 const possibleDirections = structuredInstructions.map(e => e.direction);
 console.log(new Set(possibleDirections));
 
 let horiztonalPos = 0;
 let verticalPos = 0;
 
-// structuredInstructions.forEach(e => {
-//     if (e.direction === )
-// })
+structuredInstructions.forEach(instrx => {
+    if (instrx.direction === "forward") {
+        horiztonalPos += instrx.displacement;
+    } else if (instrx.direction === "down") {
+        verticalPos -= instrx.displacement;
+    } else if (instrx.direction === "up") {
+        verticalPos += instrx.displacement;
+    } else {
+        throw new Error("Invalid direction; instructions were:", instrx);
+    }
+});
+
+console.log("NOTICE: we are still developing this solution; vertical position is not correct because it does not take into account that UP directions putting the vehicle above sea level need to be handled.");
+console.log("Horiztontal pos:", horiztonalPos);
+console.log("   Vertical pos:", verticalPos);

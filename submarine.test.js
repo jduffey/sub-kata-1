@@ -152,4 +152,39 @@ describe("Submarine", () => {
             expect(sut.getVerticalPosition()).toBe(-1032);
         });
     });
+
+    describe("calculateFinalPositionChecksum(): returns product of horizontal position and depth", () => {
+        it("value when submarine has not moved", () => {
+            const sut = new Submarine();
+
+            const actual = sut.calculateFinalPositionChecksum();
+
+            expect(actual === -0).toBe(true);
+        });
+
+        it("kata example", () => {
+            const sut = new Submarine();
+            sut.moveForward(5);
+            sut.moveDown(5);
+            sut.moveForward(8);
+            sut.moveUp(3);
+            sut.moveDown(8);
+            sut.moveForward(2);
+
+            const actual = sut.calculateFinalPositionChecksum();
+
+            expect(actual).toBe(150);
+        });
+
+        it("using kata .txt file", () => {
+            const testFile = 'testFiles/submarine_kata_input.txt';
+            const sut = new Submarine();
+            sut.executeOrders(testFile);
+
+            const actual = sut.calculateFinalPositionChecksum();
+
+            // To be clear, I did not manually calculate this result and am trusting my code :-)
+            expect(actual).toBe(2117664);
+        });
+    });
 });

@@ -44,6 +44,8 @@ class Submarine {
             console.error('Error when attempting to execute orders:', e);
         }
     }
+
+    calculateFinalPositionChecksum = () => this.getHorizontalPosition() * this.getDepth();
 }
 
 module.exports = Submarine;

@@ -41,7 +41,8 @@ class Submarine {
             });
 
         } catch (e) {
-            console.error('Error when attempting to execute orders:', e);
+            console.error('Error when attempting to execute orders.');
+            throw e;
         }
     }
 

@@ -63,6 +63,18 @@ describe("Submarine", () => {
                 expect(actual).toBe(-13);
             });
         });
+
+        describe("move up command", () => {
+            it("increases vertical position", () => {
+                const sut = new Submarine();
+                sut.moveDown(10);
+                sut.moveUp(3);
+
+                const actual = sut.getVerticalPosition();
+
+                expect(actual).toBe(-7);
+            });
+        });
     });
 
     it("movement combination tests", () => {

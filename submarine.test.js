@@ -28,5 +28,16 @@ describe("Submarine", () => {
 
             expect(actual).toBe(5);
         });
+
+        it("can accept multiple successive commands", () => {
+            const sut = new Submarine();
+            sut.moveForward(3);
+            sut.moveForward(4);
+            sut.moveForward(5);
+
+            const actual = sut.getHorizontalPosition();
+
+            expect(actual).toBe(12);
+        });
     });
 });

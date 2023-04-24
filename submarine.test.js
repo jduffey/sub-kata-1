@@ -1,26 +1,25 @@
 const Submarine = require('./submarine');
 
 describe("Submarine", () => {
+    let sut;
+    beforeEach(() => {
+        sut = new Submarine();
+    });
+
     describe("initialization tests", () => {
         it("starts with horizontal position as 0", () => {
-            const sut = new Submarine();
-
             const actual = sut.getHorizontalPosition();
 
             expect(actual).toBe(0);
         });
 
         it("starts with vertical position as 0", () => {
-            const sut = new Submarine();
-
             const actual = sut.getVerticalPosition();
 
             expect(actual).toBe(0);
         });
 
         it("starts with depth as 0", () => {
-            const sut = new Submarine();
-
             const actual = sut.getDepth();
 
             // h/t https://stackoverflow.com/questions/48405174/how-to-make-jest-not-distinguish-between-negative-zero-and-positive-zero
@@ -30,7 +29,6 @@ describe("Submarine", () => {
 
     describe("horiztonal movement tests", () => {
         it("increases horiztonal position when given forward command", () => {
-            const sut = new Submarine();
             sut.moveForward(5);
 
             const actual = sut.getHorizontalPosition();
@@ -39,7 +37,6 @@ describe("Submarine", () => {
         });
 
         it("can accept multiple successive commands", () => {
-            const sut = new Submarine();
             sut.moveForward(3);
             sut.moveForward(4);
             sut.moveForward(5);
@@ -53,7 +50,6 @@ describe("Submarine", () => {
     describe("vertical movement tests", () => {
         describe("move down command", () => {
             it("decreases vertical position", () => {
-                const sut = new Submarine();
                 sut.moveDown(8);
 
                 const actual = sut.getVerticalPosition();
@@ -62,7 +58,6 @@ describe("Submarine", () => {
             });
 
             it("can accept multiple successive commands", () => {
-                const sut = new Submarine();
                 sut.moveDown(1);
                 sut.moveDown(2);
                 sut.moveDown(10);
@@ -75,7 +70,6 @@ describe("Submarine", () => {
 
         describe("move up command", () => {
             it("increases vertical position", () => {
-                const sut = new Submarine();
                 sut.moveDown(10);
                 sut.moveUp(3);
 
@@ -86,7 +80,6 @@ describe("Submarine", () => {
 
             describe("cannot result in a positive vertical position (i.e. cannot rise above sea level)", () => {
                 it("from zero, cannot increase vertical position", () => {
-                    const sut = new Submarine();
                     sut.moveUp(4);
 
                     const actual = sut.getVerticalPosition();
@@ -95,7 +88,6 @@ describe("Submarine", () => {
                 });
 
                 it("from a negative vertical position, move up command will at most place the submarine at vertical position of 0", () => {
-                    const sut = new Submarine();
                     sut.moveDown(3);
                     sut.moveUp(6);
 
@@ -109,7 +101,6 @@ describe("Submarine", () => {
 
     describe("movement combination tests", () => {
         it("example from kata", () => {
-            const sut = new Submarine();
             sut.moveForward(5);
             sut.moveDown(5);
             sut.moveForward(8);
@@ -124,7 +115,6 @@ describe("Submarine", () => {
         it("excessive and useless move up commands", () => {
             const expectedFinalDepth = 13;
 
-            const sut = new Submarine();
             sut.moveUp(1);
             sut.moveUp(2);
             sut.moveDown(5)
@@ -144,7 +134,6 @@ describe("Submarine", () => {
     describe("executeOrders(): text file ingestion and execution", () => {
         it("kata example file", () => {
             const testFile = 'testFiles/submarine_kata_input.txt';
-            const sut = new Submarine();
 
             sut.executeOrders(testFile);
 
@@ -154,16 +143,13 @@ describe("Submarine", () => {
     });
 
     describe("calculateFinalPositionChecksum(): returns product of horizontal position and depth", () => {
-        it("value when submarine has not moved", () => {
-            const sut = new Submarine();
-
+        it("is 0 when submarine has not moved", () => {
             const actual = sut.calculateFinalPositionChecksum();
 
             expect(actual === -0).toBe(true);
         });
 
         it("kata example", () => {
-            const sut = new Submarine();
             sut.moveForward(5);
             sut.moveDown(5);
             sut.moveForward(8);
@@ -178,7 +164,6 @@ describe("Submarine", () => {
 
         it("using kata .txt file", () => {
             const testFile = 'testFiles/submarine_kata_input.txt';
-            const sut = new Submarine();
             sut.executeOrders(testFile);
 
             const actual = sut.calculateFinalPositionChecksum();

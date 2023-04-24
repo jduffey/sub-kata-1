@@ -40,4 +40,29 @@ describe("Submarine", () => {
             expect(actual).toBe(12);
         });
     });
+
+    describe("vertical movement tests", () => {
+        describe("move down command", () => {
+            it("decreases vertical position", () => {
+
+                const sut = new Submarine();
+                sut.moveDown(8);
+
+                const actual = sut.getVerticalPosition();
+
+                expect(actual).toBe(-8);
+            });
+
+            it("can accept multiple successive commands", () => {
+                const sut = new Submarine();
+                sut.moveDown(1);
+                sut.moveDown(2);
+                sut.moveDown(10);
+
+                const actual = sut.getVerticalPosition();
+
+                expect(actual).toBe(-13);
+            });
+        });
+    });
 });

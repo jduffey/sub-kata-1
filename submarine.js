@@ -8,6 +8,7 @@ class Submarine {
     getVerticalPosition = () => this.verticalPos;
 
     moveForward = (disp) => this.horizontalPos += disp;
+    moveDown = (disp) => this.verticalPos -= disp;
 }
 
 module.exports = Submarine;

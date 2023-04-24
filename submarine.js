@@ -34,18 +34,17 @@ class Submarine {
         try {
             movementOrders = this.convertFileToOrders(inputFile);
 
-            movementOrders.forEach((order) => {
-                if (order.direction === 'forward') {
-                    this.moveForward(order.displacement);
-                } else if (order.direction === 'down') {
-                    this.moveDown(order.displacement);
-                } else if (order.direction === 'up') {
-                    this.moveUp(order.displacement);
+            movementOrders.forEach(({ direction, displacement }) => {
+                if (direction === 'forward') {
+                    this.moveForward(displacement);
+                } else if (direction === 'down') {
+                    this.moveDown(displacement);
+                } else if (direction === 'up') {
+                    this.moveUp(displacement);
                 } else {
                     throw new Error("Invalid or missing direction.");
                 }
             });
-
         } catch (e) {
             console.error('Error when attempting to execute orders.');
             throw e;

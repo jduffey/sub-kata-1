@@ -44,7 +44,6 @@ describe("Submarine", () => {
     describe("vertical movement tests", () => {
         describe("move down command", () => {
             it("decreases vertical position", () => {
-
                 const sut = new Submarine();
                 sut.moveDown(8);
 
@@ -64,5 +63,16 @@ describe("Submarine", () => {
                 expect(actual).toBe(-13);
             });
         });
+    });
+
+    it("movement combination tests", () => {
+        const sut = new Submarine();
+        sut.moveDown(2);
+        sut.moveForward(5);
+        sut.moveForward(4);
+        sut.moveDown(3);
+
+        expect(sut.getHorizontalPosition()).toBe(9);
+        expect(sut.getVerticalPosition()).toBe(-5);
     });
 });

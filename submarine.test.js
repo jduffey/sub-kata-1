@@ -98,14 +98,37 @@ describe("Submarine", () => {
         });
     });
 
-    it("movement combination tests", () => {
-        const sut = new Submarine();
-        sut.moveDown(2);
-        sut.moveForward(5);
-        sut.moveForward(4);
-        sut.moveDown(3);
+    describe("movement combination tests", () => {
+        it("example from kata", () => {
+            const sut = new Submarine();
+            sut.moveForward(5);
+            sut.moveDown(5);
+            sut.moveForward(8);
+            sut.moveUp(3);
+            sut.moveDown(8);
+            sut.moveForward(2);
 
-        expect(sut.getHorizontalPosition()).toBe(9);
-        expect(sut.getVerticalPosition()).toBe(-5);
+            expect(sut.getHorizontalPosition()).toBe(15);
+            expect(sut.getVerticalPosition()).toBe(-10);
+        });
+
+        it("excessive and useless move up commands", () => {
+            const expectedFinalDepth = 13;
+
+            const sut = new Submarine();
+            sut.moveUp(1);
+            sut.moveUp(2);
+            sut.moveDown(5)
+            sut.moveUp(5);
+            sut.moveDown(3);
+            sut.moveUp(1);
+            sut.moveUp(1);
+            sut.moveUp(9);
+            sut.moveDown(expectedFinalDepth);
+
+            const actual = sut.getVerticalPosition();
+
+            expect(actual).toBe(-expectedFinalDepth);
+        });
     });
 });

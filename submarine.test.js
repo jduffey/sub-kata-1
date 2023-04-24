@@ -17,6 +17,14 @@ describe("Submarine", () => {
 
             expect(actual).toBe(0);
         });
+
+        it("starts with depth as 0", () => {
+            const sut = new Submarine();
+
+            const actual = sut.getDepth();
+
+            expect(actual).toBe(0);
+        })
     });
 
     describe("horiztonal movement tests", () => {

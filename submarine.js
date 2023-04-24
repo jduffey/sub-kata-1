@@ -9,7 +9,9 @@ class Submarine {
 
     moveForward = (disp) => this.horizontalPos += disp;
     moveDown = (disp) => this.verticalPos -= disp;
-    moveUp = (disp) => this.verticalPos += disp;
+    moveUp = (disp) => {
+        this.verticalPos = Math.min(0, this.verticalPos + disp);
+    };
 }
 
 module.exports = Submarine;

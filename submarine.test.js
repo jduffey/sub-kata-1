@@ -74,6 +74,27 @@ describe("Submarine", () => {
 
                 expect(actual).toBe(-7);
             });
+
+            describe("cannot result in a positive vertical position (i.e. cannot rise above sea level)", () => {
+                it("from zero, cannot increase vertical position", () => {
+                    const sut = new Submarine();
+                    sut.moveUp(4);
+
+                    const actual = sut.getVerticalPosition();
+
+                    expect(actual).toBe(0);
+                });
+
+                it("from a negative vertical position, move up command will at most place the submarine at vertical position of 0", () => {
+                    const sut = new Submarine();
+                    sut.moveDown(3);
+                    sut.moveUp(6);
+
+                    const actual = sut.getVerticalPosition();
+
+                    expect(actual).toBe(0);
+                });
+            });
         });
     });
 

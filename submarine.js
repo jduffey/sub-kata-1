@@ -4,12 +4,11 @@ class Submarine {
     constructor() {
         this.horizontalPos = 0;
         this.verticalPos = 0;
-        this.depth = 0;
     }
 
     getHorizontalPosition = () => this.horizontalPos;
     getVerticalPosition = () => this.verticalPos;
-    getDepth = () => this.depth;
+    getDepth = () => -this.verticalPos;
 
     moveForward = (disp) => this.horizontalPos += disp;
     moveDown = (disp) => this.verticalPos -= disp;

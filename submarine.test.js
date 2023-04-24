@@ -23,7 +23,8 @@ describe("Submarine", () => {
 
             const actual = sut.getDepth();
 
-            expect(actual).toBe(0);
+            // h/t https://stackoverflow.com/questions/48405174/how-to-make-jest-not-distinguish-between-negative-zero-and-positive-zero
+            expect(actual === -0).toBe(true);
         })
     });
 

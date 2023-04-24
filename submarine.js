@@ -16,17 +16,23 @@ class Submarine {
         this.verticalPos = Math.min(0, this.verticalPos + disp);
     };
 
+    convertFileToOrders = (inputFile) => {
+        const rawText = fs.readFileSync(inputFile, 'utf-8');
+        const linesText = rawText.split('\n');
+        const movementOrders = linesText.map((line) => {
+            const split = line.split(' ');
+            return {
+                direction: split[0],
+                displacement: parseInt(split[1], 10),
+            };
+        });
+        return movementOrders;
+    }
+
     executeOrders = (inputFile) => {
+        let movementOrders;
         try {
-            const rawText = fs.readFileSync(inputFile, 'utf-8');
-            const linesText = rawText.split('\n');
-            const movementOrders = linesText.map((line) => {
-                const split = line.split(' ');
-                return {
-                    direction: split[0],
-                    displacement: parseInt(split[1], 10),
-                };
-            });
+            movementOrders = this.convertFileToOrders(inputFile);
 
             movementOrders.forEach((order) => {
                 if (order.direction === 'forward') {

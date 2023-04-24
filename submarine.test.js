@@ -131,4 +131,16 @@ describe("Submarine", () => {
             expect(actual).toBe(-expectedFinalDepth);
         });
     });
+
+    describe("executeOrders(): text file ingestion and execution", () => {
+        it("kata example file", () => {
+            const testFile = 'testFiles/submarine_kata_input.txt';
+            const sut = new Submarine();
+
+            sut.executeOrders(testFile);
+
+            expect(sut.getHorizontalPosition()).toBe(2052);
+            expect(sut.getVerticalPosition()).toBe(-1032);
+        });
+    });
 });
